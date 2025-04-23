@@ -8,6 +8,12 @@ local opts = { noremap = true, silent = true }
 -- Netrw
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- remove the default Snacks/Line-move mappings
+-- vim.keymap.del("i", "<M-j>")
+-- vim.keymap.del("i", "<M-k>")
+-- vim.keymap.del({ "n", "v" }, "<M-j>")
+-- vim.keymap.del({ "n", "v" }, "<M-k>")
+
 -- Moving selected lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
