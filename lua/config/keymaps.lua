@@ -8,12 +8,6 @@ local opts = { noremap = true, silent = true }
 -- Netrw
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
--- Resize window using <ctrl> arrow keys
-keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-
 -- Moving selected lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -51,3 +45,6 @@ vim.keymap.set("n", "<leader>tb", function()
   require("gruvbox").setup({ transparent_mode = current })
   vim.cmd("colorscheme gruvbox")
 end, { desc = "Toggle Gruvbox transparency" })
+
+keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+keymap.set("n", "ss", ":split<CR>", { desc = "Create terminal below" })
