@@ -23,13 +23,13 @@ keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy selected text to +
 
 keymap.set("i", "<C-c>", "<Esc>", { desc = "Escape everything with <C-c>" })
 
--- Perhaps remove this since it can be done using a plugin that I have installed
-keymap.set(
-  "n",
-  "<leader>s",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Search and replace current word" }
-)
+-- Removed this since it can be done with <leader>sg
+-- keymap.set(
+--     "n",
+--     "<leader>s",
+--     [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+--     { desc = "Search and replace current word" }
+-- )
 
 keymap.set("n", "<M-z>", ":set wrap!<CR>", { desc = "Toggle line wrap" })
 
@@ -41,10 +41,13 @@ keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to black hole regi
 -- Toggle transparency
 local current = false
 vim.keymap.set("n", "<leader>tb", function()
-  current = not current
-  require("gruvbox").setup({ transparent_mode = current })
-  vim.cmd("colorscheme gruvbox")
+    current = not current
+    require("gruvbox").setup({ transparent_mode = current })
+    vim.cmd("colorscheme gruvbox")
 end, { desc = "Toggle Gruvbox transparency" })
 
 keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 keymap.set("n", "ss", ":split<CR>", { desc = "Create terminal below" })
+
+-- In terminal mode, pressing <C-x> will exit terminal mode
+vim.keymap.set("t", "<C-x>", [[<C-\><C-n>]], { noremap = true, silent = true })

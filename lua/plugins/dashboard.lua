@@ -1,13 +1,13 @@
 return {
-  "snacks.nvim",
-  opts = {
-    dashboard = {
-      preset = {
-        pick = function(cmd, opts)
-          return LazyVim.pick(cmd, opts)()
-        end,
-        -- Font Style = ANSI Shadow
-        header = [[
+    "snacks.nvim",
+    opts = {
+        dashboard = {
+            preset = {
+                pick = function(cmd, opts)
+                    return LazyVim.pick(cmd, opts)()
+                end,
+                -- Font Style = ANSI Shadow
+                header = [[
 ██╗   ██╗ ██████╗ ██╗   ██╗    ███╗   ██╗███████╗██████╗ ██████╗ 
 ╚██╗ ██╔╝██╔═══██╗██║   ██║    ████╗  ██║██╔════╝██╔══██╗██╔══██╗
  ╚████╔╝ ██║   ██║██║   ██║    ██╔██╗ ██║█████╗  ██████╔╝██║  ██║
@@ -28,7 +28,7 @@ return {
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
-      },
+            },
+        },
     },
-  },
 }

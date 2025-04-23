@@ -15,11 +15,11 @@
 
 -- Toggle nvim-lint globally (all buffers)
 vim.keymap.set("n", "<leader>uN", function()
-  -- clear all lint autocmds
-  vim.api.nvim_clear_autocmds({ group = "nvim-lint" })
-  -- clear diagnostics in all open buffers
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    vim.diagnostic.reset(nil, bufnr)
-  end
-  vim.notify("🔇 Linting disabled globally. Re-enable by restarting nvim", vim.log.levels.WARN)
+    -- clear all lint autocmds
+    vim.api.nvim_clear_autocmds({ group = "nvim-lint" })
+    -- clear diagnostics in all open buffers
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        vim.diagnostic.reset(nil, bufnr)
+    end
+    vim.notify("🔇 Linting disabled globally. Re-enable by restarting nvim", vim.log.levels.WARN)
 end, { desc = "Disable linting everywhere" })
