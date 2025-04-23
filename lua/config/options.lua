@@ -23,7 +23,7 @@ vim.opt.isfname:append(".") -- Treat . as part of filenames in search?? Not sure
 vim.opt.updatetime = 50 -- Faster updates (good for CursorHold, etc.)
 
 ---------------------------------------------------------
--- colors
+-- Colors
 ---------------------------------------------------------
 vim.opt.colorcolumn = "80" -- Vertical line at col=80
 vim.opt.termguicolors = false -- True color support
@@ -48,3 +48,26 @@ vim.opt.smartindent = true -- Smart indentation on new lines
 ---------------------------------------------------------
 vim.opt.nu = true -- Enable line numbers
 vim.opt.relativenumber = true -- Relative line numbers for quick jump
+
+---------------------------------------------------------
+-- Auto Formatting
+---------------------------------------------------------
+vim.g.autoformat = true -- Enable LazyVim auto formatting
+
+---------------------------------------------------------
+-- Snacks Animations
+---------------------------------------------------------
+vim.g.snacks_animate = true -- Enable animations globally
+
+---------------------------------------------------------
+-- Lualine
+---------------------------------------------------------
+vim.g.trouble_lualine = true -- Show current doc symbols location from Trouble in Lualine
+
+---------------------------------------------------------
+-- Other
+---------------------------------------------------------
+vim.opt.confirm = false -- Confirm to save changes before exiting modified buffer
+vim.opt.cursorline = true -- Highlight current line
+vim.opt.list = false -- Show invisible characters (eg. tabs)
+vim.opt.winminwidth = 5 -- Minimum window width
