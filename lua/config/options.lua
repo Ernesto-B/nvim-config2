@@ -6,10 +6,21 @@
 ---------------------------------------------------------
 -- Setting the shell to bash
 ---------------------------------------------------------
-vim.opt.shell = "C:\\PROGRA~1\\Git\\bin\\bash.exe"
-vim.opt.shellcmdflag = "-c" -- Ensures commands are executed correctly
+-- vim.opt.shell = "C:\\PROGRA~1\\Git\\bin\\bash.exe"
+-- vim.opt.shellcmdflag = "-c" -- Ensures commands are executed correctly
+-- vim.opt.shellquote = ""
+-- vim.opt.shellxquote = ""
+
+-- use the DOS 8.3 short‐path to avoid the space
+vim.opt.shell = "C:/PROGRA~1/Git/bin/bash.exe"
+-- tell bash to be interactive (-i) and accept a command (-c)
+vim.opt.shellcmdflag = "-ic"
+-- no extra quoting needed
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
+-- keep the default redirects/pipes so `:!` and `:term` still work
+vim.opt.shellredir = "-c %s 2>&1"
+vim.opt.shellpipe = "2>&1| tee"
 
 ---------------------------------------------------------
 -- File Names - NOT SURE IF WORKING

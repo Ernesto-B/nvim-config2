@@ -46,7 +46,7 @@ keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to black hole regi
 
 -- Toggle transparency
 local current = false
-vim.keymap.set("n", "<leader>tb", function()
+keymap.set("n", "<leader>tb", function()
     current = not current
     require("gruvbox").setup({ transparent_mode = current })
     vim.cmd("colorscheme gruvbox")
@@ -56,4 +56,7 @@ keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 keymap.set("n", "ss", ":split<CR>", { desc = "Create terminal below" })
 
 -- In terminal mode, pressing <C-x> will exit terminal mode
-vim.keymap.set("t", "<C-x>", [[<C-\><C-n>]], { noremap = true, silent = true })
+keymap.set("t", "<C-x>", [[<C-\><C-n>]], { noremap = true, silent = true })
+
+-- Pressing ! will begin a command
+keymap.set("n", "!", ":!")
