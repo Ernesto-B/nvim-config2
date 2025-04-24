@@ -46,6 +46,7 @@
 - `<leader>db` Delete current buffer  
 - `<leader>,` List all buffers  
 - `<C-\>` or `<leader>ft` Toggle built-in terminal  
+- `C-x`  Exit terminal mode to normal mode
 
 ### Movement & Display
 - `<C-d>` / `<C-u>` Half-page down / up + center cursor  

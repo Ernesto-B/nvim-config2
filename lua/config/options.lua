@@ -14,7 +14,7 @@
 -- use the DOS 8.3 short‐path to avoid the space
 vim.opt.shell = "C:/PROGRA~1/Git/bin/bash.exe"
 -- tell bash to be interactive (-i) and accept a command (-c)
-vim.opt.shellcmdflag = "-ic"
+vim.opt.shellcmdflag = "-c"
 -- no extra quoting needed
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
