@@ -63,7 +63,7 @@ vim.opt.relativenumber = true -- Relative line numbers for quick jump
 ---------------------------------------------------------
 -- Auto Formatting
 ---------------------------------------------------------
-vim.g.autoformat = true -- Enable LazyVim auto formatting
+vim.g.autoformat = false -- Enable LazyVim auto formatting, <leader>cf to format file
 
 ---------------------------------------------------------
 -- Snacks Animations
@@ -74,6 +74,15 @@ vim.g.snacks_animate = true -- Enable animations globally
 -- Lualine
 ---------------------------------------------------------
 vim.g.trouble_lualine = true -- Show current doc symbols location from Trouble in Lualine
+
+---------------------------------------------------------
+-- Netrw
+---------------------------------------------------------
+-- 0 = Thin. One file per line, names only
+-- 1 = Long. One file per line with size, date, time
+-- 2 = Wide. Multiple cols
+-- 3 = Tree. File tree view
+vim.g.netrw_liststyle = 0
 
 ---------------------------------------------------------
 -- Other

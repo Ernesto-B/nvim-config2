@@ -29,13 +29,12 @@ keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy selected text to +
 
 keymap.set("i", "<C-c>", "<Esc>", { desc = "Escape everything with <C-c>" })
 
--- Removed this since it can be done with <leader>sg
--- keymap.set(
---     "n",
---     "<leader>s",
---     [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
---     { desc = "Search and replace current word" }
--- )
+keymap.set(
+    "n",
+    "<leader>ss",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Simple find and replace in current file" }
+)
 
 keymap.set("n", "<M-z>", ":set wrap!<CR>", { desc = "Toggle line wrap" })
 
@@ -53,10 +52,54 @@ keymap.set("n", "<leader>tb", function()
 end, { desc = "Toggle Gruvbox transparency" })
 
 keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
-keymap.set("n", "ss", ":split<CR>", { desc = "Create terminal below" })
+keymap.set("n", "ss", ":split<CR>", { desc = "Split current window horizontally" })
 
 -- In terminal mode, pressing <C-x> will exit terminal mode
 keymap.set("t", "<C-x>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
 -- Pressing ! will begin a command
 keymap.set("n", "!", ":!")
+
+---------------------------------------------------------
+-- ALLOWING SMART SPLITS MOVEMENTS IN TERMINAL MODE
+---------------------------------------------------------
+-- Convert your normal-mode movement into a terminal-mode mapping
+vim.keymap.set("t", "<C-h>", function()
+    -- 1) Temporarily exit terminal insert mode
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
+    -- 2) Use smart-splits to move left
+    require("smart-splits").move_cursor_left()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("t", "<C-j>", function()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
+    require("smart-splits").move_cursor_down()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("t", "<C-k>", function()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
+    require("smart-splits").move_cursor_up()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("t", "<C-l>", function()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
+    require("smart-splits").move_cursor_right()
+end, { noremap = true, silent = true })
+
+---------------------------------------------------------
+
+-- AVAILABLE MAPPINGS (that I have come across)
+keymap.set("n", "<leader>e", "")
+keymap.set("n", "<leader>E", "")
+keymap.set("n", "<leader>sM", "")
+keymap.set("n", "<C-i>", "")
+keymap.set("n", "<C-I>", "")
+keymap.set("n", "U", "")
+keymap.set("n", "U", "")
+keymap.set("n", "Q", "")
+keymap.set("n", "<c-k>", "")
+keymap.set("n", "<leader>fb", "")
+keymap.set("n", "<leader>fB", "")
+keymap.set("n", "<leader>ff", "")
+keymap.set("n", "<leader>fF", "")
+

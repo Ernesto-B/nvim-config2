@@ -49,7 +49,7 @@ return {
         vim.keymap.set("n", "<leader>5", function()
             harpoon:list():select(5)
         end, { desc = "harpoon to file 5" })
-        vim.keymap.set("n", "<leader>c", function()
+        vim.keymap.set("n", "<leader>C", function()
             require("harpoon"):list():clear()
             vim.notify("Harpoon list cleared", vim.log.levels.INFO)
         end, { desc = "clear all harpoon marks" })
