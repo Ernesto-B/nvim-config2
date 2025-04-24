@@ -23,3 +23,23 @@ prune_shada_tmp()
 vim.api.nvim_create_autocmd("VimLeavePre", {
     callback = prune_shada_tmp,
 })
+
+-- Treat *.env files as their own 'env' filetype
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.env",
+    callback = function()
+        vim.bo.filetype = "env"
+    end,
+})
+
+-- Completely disable ALL cmp sources in *.env files (not fully working)
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "env",
+    callback = function()
+        local cmp = require("cmp")
+        cmp.setup.buffer({
+            enabled = true, -- still enabled so you can type, but...
+            sources = {}, -- …no sources = no completions of any kind
+        })
+    end,
+})
