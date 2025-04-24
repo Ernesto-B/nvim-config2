@@ -37,12 +37,12 @@ vim.opt.updatetime = 50 -- Faster updates (good for CursorHold, etc.)
 -- Colors
 ---------------------------------------------------------
 vim.opt.colorcolumn = "80" -- Vertical line at col=80
-vim.opt.termguicolors = false -- True color support
+vim.opt.termguicolors = true -- True color support
 
 ---------------------------------------------------------
 -- Search
 ---------------------------------------------------------
-vim.opt.hlsearch = true -- Dont highlight all search matches
+vim.opt.hlsearch = true -- Show highlight all search matches
 vim.opt.incsearch = true -- Show matches as you type
 
 ---------------------------------------------------------
