@@ -88,6 +88,23 @@ end, { noremap = true, silent = true })
 
 ---------------------------------------------------------
 
+-- disable linting in the current buffer
+-- vim.keymap.set("n", "<leader>un", function()
+--   vim.api.nvim_clear_autocmds({ group = "nvim-lint", buffer = 0 })
+--   vim.notify("🔇 Linting disabled for this buffer", vim.log.levels.WARN)
+-- end, { desc = "Disable linting in this buffer" })
+
+-- Toggle nvim-lint globally (all buffers)
+vim.keymap.set("n", "<leader>uN", function()
+    -- clear all lint autocmds
+    vim.api.nvim_clear_autocmds({ group = "nvim-lint" })
+    -- clear diagnostics in all open buffers
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        vim.diagnostic.reset(nil, bufnr)
+    end
+    vim.notify("🔇 Linting disabled globally. Re-enable by restarting nvim", vim.log.levels.WARN)
+end, { desc = "Disable linting everywhere" })
+
 -- AVAILABLE MAPPINGS (that I have come across)
 keymap.set("n", "<leader>e", "")
 keymap.set("n", "<leader>E", "")
@@ -102,4 +119,3 @@ keymap.set("n", "<leader>fb", "")
 keymap.set("n", "<leader>fB", "")
 keymap.set("n", "<leader>ff", "")
 keymap.set("n", "<leader>fF", "")
-

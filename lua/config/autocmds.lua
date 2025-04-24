@@ -7,19 +7,19 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- disable linting in the current buffer
--- vim.keymap.set("n", "<leader>un", function()
---   vim.api.nvim_clear_autocmds({ group = "nvim-lint", buffer = 0 })
---   vim.notify("🔇 Linting disabled for this buffer", vim.log.levels.WARN)
--- end, { desc = "Disable linting in this buffer" })
-
--- Toggle nvim-lint globally (all buffers)
-vim.keymap.set("n", "<leader>uN", function()
-    -- clear all lint autocmds
-    vim.api.nvim_clear_autocmds({ group = "nvim-lint" })
-    -- clear diagnostics in all open buffers
-    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-        vim.diagnostic.reset(nil, bufnr)
+--- Prune any stale ShaDa temp files (main.shada.tmp.*), preserving main.shada itself.
+local function prune_shada_tmp()
+    local shada_dir = vim.fn.stdpath("data") .. "/shada"
+    for _, tmp in ipairs(vim.fn.globpath(shada_dir, "main.shada.tmp.*", false, true)) do
+        -- pcall to avoid errors if file was removed concurrently
+        pcall(os.remove, tmp)
     end
-    vim.notify("🔇 Linting disabled globally. Re-enable by restarting nvim", vim.log.levels.WARN)
-end, { desc = "Disable linting everywhere" })
+end
+
+-- Run on startup
+prune_shada_tmp()
+
+-- Run again just before quitting, in case new tmps were left behind
+vim.api.nvim_create_autocmd("VimLeavePre", {
+    callback = prune_shada_tmp,
+})

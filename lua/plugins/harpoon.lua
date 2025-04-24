@@ -30,6 +30,7 @@ return {
         -- key mappings
         vim.keymap.set("n", "<leader>a", function()
             harpoon:list():add()
+            vim.notify("File added to Harpoon", vim.log.levels.INFO)
         end, { desc = "harpoon file" })
         vim.keymap.set("n", "<leader>A", function()
             toggle_telescope(harpoon:list())
