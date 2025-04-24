@@ -18,7 +18,7 @@
 - `<C-x>` to remove file form list in a menu
 - `<leader>db` - delete current buffer
 - `<leader>,` - view all buffers
-- Refer to [Keymaps Cheat Sheet](#keymaps-cheat-sheet)
+- Refer to this config's [Keymaps Cheat Sheet](#keymaps-cheat-sheet)
 
 ## Fix for ".so is not a valid Win32 application"
 1. Check installation of "clang-cl" `:!where clang-cl`. If you get an error, you have to first install "clang-cl" via the Visual Studio Installer
@@ -28,121 +28,109 @@
 5. Check installation of languages with `:TSInstallInfo`
 
 ## Keymaps Cheat Sheet
-```txt
-BASICS
-D - delete entire line from cursor
-C - change entire line from cursor
-V - select entire line
-{ - jump to prev func
-} - jump to next func
-dfx - delete until next occurrence of x
-cfx - 
-fx - jump to next occurrence of x. Acts like an in-line goto
-Fx - jump to prev occurrence of x. Acts like an in-line goto
-ciw - change entire word below cursor
-diw -
-viw -
-daw - delete entire word below cursor + whitespace beside it
-vis - select entire paragraph
-dis -
-cis - 
+### Basics
+- `D` Delete from cursor to end of line  
+- `C` Change from cursor to end of line  
+- `V` Select entire line (Visual Line)  
+- `{` / `}` Jump to previous / next function  
+- `dfx` Delete until (but not including) next `x`  
+- `cfx` Change until next `x`  
+- `fx` / `Fx` Jump to next / previous occurrence of `x`  
+- `ciw` / `diw` / `viw` Change / delete / select inner word  
+- `daw` Delete a word and surrounding whitespace  
+- `vis` / `dis` / `cis` Select / delete / change inner sentence (paragraph)  
+- `<C-v>` Enter Visual-Block mode  
 
-<C-v> - multi-line edit (go up and down to select lines)
+### Window & Buffers
+- `<leader>pv` Open Netrw explorer  
+- `<leader>db` Delete current buffer  
+- `<leader>,` List all buffers  
+- `<C-\>` or `<leader>ft` Toggle built-in terminal  
 
-<leader>tb - toggle background transparency
-<leader>ft - open terminal
+### Movement & Display
+- `<C-d>` / `<C-u>` Half-page down / up + center cursor  
+- `n` / `N` Next / previous search + center/fold open  
+- `za` / `zi` Toggle current fold / all folds  
+- `<leader>uS` Toggle smooth scroll  
+- `<leader>uz` Toggle Zen mode  
+- `<leader>uD` Toggle dim background  
+- `<leader>tb` Toggle window transparency
+- `<leader>uc` Cycle through color schemes  
+- `<leader>uh` Toggle LSP inlay hints  
+- `<leader>cs` Display all symbols in file
 
-MOVEMENT/DISPLAY
-<leader>uc - browse colorthemes
-Ctrl o, i - jump between previous cursor locations
-g; - jump to prev edit
-g, - jump to next edit
-za - toggle fold of current block
-zi - toggle all folds
-<leader>cs - display all symbols in file
-<leader>uS - toggle smooth scroll
-<leader>uz - toggle zen mode
-<leader>uD - toggle dimming
-<leader>uh - toggle inlay hints
+### Search & Navigation
+- `<leader><Space>` Find file (Telescope)  
+- `<leader>sg` Live grep in project  
+- `<leader>sr` Advanced search & replace current word  
+- `<C-s>` Simple search & replace current word in file
+- `<leader>ss` List functions in file (Telescope symbols)  
+- `<leader>sw` Search for symbol in workspace  
+- `gr` LSP: find references  
+- `gd` LSP: go to definition  
+- `g;` / `g,` Jump to prev / next edit position  
+- `<leader>fp` Browse projects  
+- `<leader>fR` Browse recent files (project)  
+- `<leader>fe` Toggle file-explorer (project root)  
+- `<leader>fE` Toggle file-explorer (pwd)  
 
+### Git
+- `<leader>gg` Open lazygit (root dir)  
+- `<leader>gs` Git status (Telescope)  
+- `<leader>gf` Git file history (Telescope)  
+- `<leader>gl` Git log (Telescope)  
+- `<leader>gL` Git log (cwd)  
+- `<leader>gb` Git blame (line)  
+- `<leader>gY` Copy GitHub URL of file/line  
 
-CODEBASE SEARCHING/GENERAL SEARCHING
-<leader><Space> - find file in project
-<leader>sg - grep inside project
-gr - find all references of hovered word
-<leader>sr - advanced find & replace (tons of settings)
-<C-s> - simple find & replace current word in file
-<leader>ss - jump to a function in file
-<leader>sw - search for symbol in workspace
-<leader>su - toggle undo tree
-gd - goto definition of hovered thing
-<leader>fp - browse projects
-<leader>fR - browse recent files
-<leader>fe - toggle explorer from root
-<leader>fE - toggle explorer from pwd??
+### Advanced Editing
+- `J` / `K` in Visual Move selected lines down / up  
+- `=ap` Auto-indent current paragraph  
+- `gUaw` Capitalize entire word  
+- `<leader>d` Delete into black-hole register  
+- `]a` Go to next function parameter start  
+- `]m` Go to next function  
+- `<leader>cR` Rename current file
+- `vis` Select entire paragraph
 
+### Formatting & Linting
+- `<leader>cf` Format buffer (force)  
+- `<leader>cF` Format injected languages  
+- `<leader>uf` Toggle auto-format (current buffer)  
+- `<leader>uF` Toggle auto-format (all buffers)  
+- `<leader>uN` Disable lint (all buffers). Restart nvim to re-enable
 
-GIT
-<leader>gg - open git ui/window
-<leader>gs - open git status. Can then go to the file to check them
-<leader>gf - open git file history
-<leader>gl - open git lot to view all activity. Can then checkout to specific commit to view it
+### Testing / Debugging / Commenting
+- `<leader>rr` Run HTTP request (rest-nvim)  
+- `<leader>ro` Open HTTP request results (rest-nvim) 
+- `[d` / `]d` Prev / next diagnostic  
+- `gcc` Toggle comment (line)  
+- `gco` / `gcO` Add comment below / above  
+- `K` Hover documentation (or LSP signature)  
+- `<leader>cn` Generate annotation (neogen)  
 
+### Spelling
+- `<leader>us` Toggle spell check in current buffer
+- `]s` / `[s` Jump to next / previous spelling error
+- `z=` Show spelling suggestion correction to pick
 
-ADVANCED EDITING
-<C-t> - indent line in insert mode
-<C-d> - de-indent line in insert mode
-<C-o> - temp normal mode from insert mode
-<C-w> - delete word before cursor during insert mode
-J or K - move selected lines up or down
-=ap - auto indent current paragraph
-gUaw - capitalize entire word
-vis - select entire paragraph
-<leader>d - delete into black hole register to not replace what's been yanked
-]a - goto next param start
-]m - goto next func
-H L - goto next/prev buffer
-<leader>, - view all open buffers
-<leader>cR - rename file
+### Harpoon
+- `<leader>a` Add file to Harpoon  
+- `<leader>A` Open Harpoon quick-menu (Telescope)  
+- `<leader>[` / `<leader>]` Cycle Harpoon marks  
+- `<leader>1` … `<leader>5` Jump to Harpoon slot 1–5  
+- `<leader>r` Remove current file from Harpoon  
+- `<leader>C` Clear all Harpoon marks  
 
-<leader>cf - format
-<leader>cF - format injected langs???
-<leader>uf - toggle auto-formatter for current buffer
-<leader>uF - toggle auto-formatters for all buffers
-<leader>uN - toggle auto linting for all buffers
-
-
-TESTING/DEBUGGING/COMMENTING
-<leader>rr - run HTTP request
-<leader>ro - Open HTTP request results
-[d - view prev error
-]d - view next error
-gcc - toggle comment on current line
-gco - make comment in line below
-K - toggle symbol info
-<leader>cn - generate function annotation (neogen)
-
-
-HARPOON
-<leader>C - clear harpoon list
-<leader>a - add file to harpoon
-<leader>A - list all harpoon files (open harpoon telescope)
-<leader>r - remove current file from harpoon
-<leader>1,2,etc - harpoon to file at index 1,2,etc
-<leader>], [ - cycle through harpooned files
-
-
-USEFUL COMMANDS
-<leader>sC - view all commands
-:verbose nmap <leader>r - tells you if keybind is used, and what it is bound to
-:TSInstall
-:TSUninstall
-:TSUpdate
-:Lazy sync [plugin]
-:Lazy clean [plugin]
-:Lazy
-:Mason
-:LuaSnipListAvailable - list snippet "triggers" for current filetype
-:MarkdownPreview - (only in .md files)
-:Screenkey - toggle type logger display
-```
+### Useful Commands
+- `<leader>sC` Search commands
+- `:TSInstall`, `:TSUninstall`, `:TSUpdate` Treesitter  
+- `:Lazy sync [plugin]`, `:Lazy clean [plugin]` LazyVim  
+- `:Mason` Open Mason UI  
+- `:ConformInfo` Show active formatters  
+- `:LspInfo` Show LSP status  
+- `:help <topic>` Read built-in docs  
+- `:verbose [mode]map [keymapping]` Check keymapping for provided mode/input
+- `<leader>sk` View and search keymaps
+- `:MarkdownPreview` Open md file in browser
+- `:Screenkey` Toggle Screenkey plugin
