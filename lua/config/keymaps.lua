@@ -31,7 +31,7 @@ keymap.set("i", "<C-c>", "<Esc>", { desc = "Escape everything with <C-c>" })
 
 keymap.set(
     "n",
-    "<leader>ss",
+    "<C-s>",
     [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
     { desc = "Simple find and replace in current file" }
 )

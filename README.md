@@ -70,6 +70,9 @@ CODEBASE SEARCHING/GENERAL SEARCHING
 <leader><Space> - find file in project
 <leader>sg - grep inside project
 gr - find all references of hovered word
+<leader>sr - advanced find & replace (tons of settings)
+<C-s> - simple find & replace current word in file
+<leader>ss - jump to a function in file
 <leader>sw - search for symbol in workspace
 <leader>su - toggle undo tree
 gd - goto definition of hovered thing
@@ -91,23 +94,15 @@ ADVANCED EDITING
 <C-d> - de-indent line in insert mode
 <C-o> - temp normal mode from insert mode
 <C-w> - delete word before cursor during insert mode
-<leader>sg - grep from root
-<leader>sr - advanced find & replace (tons of settings)
-<leader>ss - find & replace current word in file
-<leader>vrr - view all occurrences of symbol in workspace!!!!!
 J or K - move selected lines up or down
 =ap - auto indent current paragraph
-. - repeat last action/movement/thing
 gUaw - capitalize entire word
-u (or U) - change highlighted text to lowercase/uppercase
-~ - toggle caps
 vis - select entire paragraph
 <leader>d - delete into black hole register to not replace what's been yanked
 ]a - goto next param start
 ]m - goto next func
 H L - goto next/prev buffer
 <leader>, - view all open buffers
-<leader>ss - jump to a function in file
 <leader>cR - rename file
 
 <leader>cf - format
@@ -123,6 +118,7 @@ TESTING/DEBUGGING/COMMENTING
 [d - view prev error
 ]d - view next error
 gcc - toggle comment on current line
+gco - make comment in line below
 K - toggle symbol info
 <leader>cn - generate function annotation (neogen)
 
