@@ -56,7 +56,8 @@
 - `<leader>uz` Toggle Zen mode  
 - `<leader>uD` Toggle dim background  
 - `<leader>tb` Toggle window transparency
-- `<leader>uc` Cycle through color schemes  
+- `<leader>uc` Toggle conceal level
+- `<leader>uC` Cycle through color schemes  
 - `<leader>uh` Toggle LSP inlay hints  
 - `<leader>cs` Display all symbols in file
 
@@ -93,6 +94,7 @@
 - `]m` Go to next function  
 - `<leader>cR` Rename current file
 - `vis` Select entire paragraph
+- `<leader>nf`  Create new file at directory
 
 ### Formatting & Linting
 - `<leader>cf` Format buffer (force)  
