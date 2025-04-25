@@ -9,6 +9,10 @@ return {
         -- This compiler part is probably not required for linux configs
         require("nvim-treesitter.install").compilers = { "clang-cl" }
         -- require'nvim-treesitter.install'.compilers = { "zig cc", "clang-cl", "gcc" }
+        
+        -- map the "env" filetype to the "bash" parser:
+        vim.treesitter.language.register("bash", { "env" })
+
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
@@ -40,6 +44,8 @@ return {
                 "html",
                 "nginx",
             },
+            modules = {},
+            ignore_install = {},
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
