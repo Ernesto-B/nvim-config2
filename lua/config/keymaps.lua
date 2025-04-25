@@ -99,6 +99,29 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 ---------------------------------------------------------
 
+-- Whenever a new terminal opens, set up buffer-local <C-w>v
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function(args)
+        local bufnr = args.buf
+        local winid = vim.fn.bufwinid(bufnr)
+        vim.api.nvim_win_set_option(winid, "number", false)
+        vim.api.nvim_win_set_option(winid, "relativenumber", false)
+
+        -- In terminal-insert mode: first leave to normal, then vsplit+terminal
+        keymap.set("t", "<C-w>v",
+            -- exit to terminal-normal, then split & open a new terminal
+            "<C-\\><C-n><cmd>vsplit | terminal<CR> | i",
+            vim.tbl_extend("force", opts, { buffer = bufnr })
+        )
+
+        -- In terminal-normal mode: just do vsplit+terminal
+        keymap.set("n", "<C-w>v",
+            "<cmd>vsplit | terminal<CR> | i",
+            vim.tbl_extend("force", opts, { buffer = bufnr })
+        )
+    end,
+})
+
 -- disable linting in the current buffer
 -- vim.keymap.set("n", "<leader>un", function()
 --   vim.api.nvim_clear_autocmds({ group = "nvim-lint", buffer = 0 })
@@ -115,6 +138,21 @@ vim.keymap.set("n", "<leader>uN", function()
     end
     vim.notify("🔇 Linting disabled globally. Re-enable by restarting nvim", vim.log.levels.WARN)
 end, { desc = "Disable linting everywhere" })
+
+
+-- Create or open a file anywhere
+keymap.set("n", "<leader>nf", function()
+    vim.ui.input({
+        prompt     = "New file path: ",
+        default    = "",
+        completion = "file",
+    }, function(path)
+            if path and path ~= "" then
+                vim.cmd("edit " .. vim.fn.fnameescape(path))
+            end
+        end)
+end, { desc = "New file anywhere (with Tab completion)" })
+
 
 -- AVAILABLE MAPPINGS (that I have come across)
 keymap.set("n", "<leader>e", "")
