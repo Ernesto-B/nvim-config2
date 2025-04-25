@@ -63,7 +63,7 @@ keymap.set("n", "!", ":!")
 ---------------------------------------------------------
 -- ALLOWING SMART SPLITS MOVEMENTS IN TERMINAL MODE
 ---------------------------------------------------------
--- Convert your normal-mode movement into a terminal-mode mapping
+-- Insert-mode in terminal: drop back to normal + move
 vim.keymap.set("t", "<C-h>", function()
     -- 1) Temporarily exit terminal insert mode
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
@@ -85,6 +85,17 @@ vim.keymap.set("t", "<C-l>", function()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
     require("smart-splits").move_cursor_right()
 end, { noremap = true, silent = true })
+
+-- Normal-mode in terminal buffers: directly invoke smart-splits
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+        local b = vim.api.nvim_get_current_buf()
+        keymap.set( "n", "<C-h>", require("smart-splits").move_cursor_left, { buffer = b, noremap = true, silent = true })
+        keymap.set( "n", "<C-j>", require("smart-splits").move_cursor_down, { buffer = b, noremap = true, silent = true })
+        keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up, { buffer = b, noremap = true, silent = true })
+        keymap.set( "n", "<C-l>", require("smart-splits").move_cursor_right, { buffer = b, noremap = true, silent = true })
+    end,
+})
 
 ---------------------------------------------------------
 

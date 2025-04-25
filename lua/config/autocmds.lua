@@ -33,13 +33,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 -- Completely disable ALL cmp sources in *.env files (not fully working)
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "env",
-    callback = function()
-        local cmp = require("cmp")
-        cmp.setup.buffer({
-            enabled = true, -- still enabled so you can type, but...
-            sources = {}, -- …no sources = no completions of any kind
-        })
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "env",
+--     callback = function()
+--         local cmp = require("cmp")
+--         cmp.setup.buffer({
+--             enabled = true, -- still enabled so you can type, but...
+--             sources = {}, -- …no sources = no completions of any kind
+--         })
+--     end,
+-- })
