@@ -46,6 +46,11 @@ return {
                         annotation_convention = "tsdoc",
                     },
                 },
+                go = {
+                    template = {
+                        annotation_convention = "godoc",
+                    }
+                }
                 -- add more here
             },
         })

@@ -22,8 +22,8 @@ return {
             open_mapping = false,
         })
 
-        -- Bind Ctrl-\ for bottom term
-        map({ "n", "t" }, "<C-\\>", function()
+        -- Bind Ctrl-` for bottom term
+        map({ "n", "t" }, "<C-`>", function()
             th:toggle(15)
         end, o)
 

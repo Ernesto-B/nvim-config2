@@ -21,6 +21,7 @@ return {
             typescript = { "prettier" },
             vue = { "prettier" },
             yaml = { "prettier" },
+            go = { "gofumpt" },
         })
     end,
 }

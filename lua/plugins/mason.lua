@@ -40,6 +40,7 @@ return {
                 "eslint_d", -- js/ts linter
                 "shellcheck", -- shell scripts
                 "golangci-lint", -- go linter
+                "gofumpt",  -- go formatter
                 "staticcheck", -- go static analysis
                 "dotenv-linter", -- .env files
                 "postgrestools", -- your custom tool
