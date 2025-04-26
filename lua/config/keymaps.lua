@@ -9,10 +9,10 @@ local opts = { noremap = true, silent = true }
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- remove the default Snacks/Line-move mappings
--- vim.keymap.del("i", "<M-j>")
--- vim.keymap.del("i", "<M-k>")
--- vim.keymap.del({ "n", "v" }, "<M-j>")
--- vim.keymap.del({ "n", "v" }, "<M-k>")
+-- keymap.del("i", "<M-j>")
+-- keymap.del("i", "<M-k>")
+-- keymap.del({ "n", "v" }, "<M-j>")
+-- keymap.del({ "n", "v" }, "<M-k>")
 
 -- Moving selected lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -29,12 +29,29 @@ keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy selected text to +
 
 keymap.set("i", "<C-c>", "<Esc>", { desc = "Escape everything with <C-c>" })
 
+
+---------------------------------------------------------
+-- FIND AND REPLACE
+---------------------------------------------------------
 keymap.set(
-    "n",
-    "<C-s>",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    "n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
     { desc = "Simple find and replace in current file" }
 )
+
+-- In visual mode, wrap the selected text into a :s///g 
+keymap.set("v","<leader>s", [["zy:%s/\V<C-r>z//gI<Left><Left><Left>]], {
+  desc = "Replace visual selection across lines",
+  silent = false,
+})
+
+
+keymap.set(
+    "n",
+    "<M-s>",
+    [[:s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]],
+    { desc = "Simple find and replace in current line" }
+)
+---------------------------------------------------------
 
 keymap.set("n", "<M-z>", ":set wrap!<CR>", { desc = "Toggle line wrap" })
 
@@ -51,8 +68,8 @@ keymap.set("n", "<leader>tb", function()
     vim.cmd("colorscheme gruvbox")
 end, { desc = "Toggle Gruvbox transparency" })
 
-keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
-keymap.set("n", "ss", ":split<CR>", { desc = "Split current window horizontally" })
+-- keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+-- keymap.set("n", "ss", ":split<CR>", { desc = "Split current window horizontally" })
 
 -- In terminal mode, pressing <C-x> will exit terminal mode
 keymap.set("t", "<C-x>", [[<C-\><C-n>]], { noremap = true, silent = true })
@@ -64,24 +81,24 @@ keymap.set("n", "!", ":!")
 -- ALLOWING SMART SPLITS MOVEMENTS IN TERMINAL MODE
 ---------------------------------------------------------
 -- Insert-mode in terminal: drop back to normal + move
-vim.keymap.set("t", "<C-h>", function()
+keymap.set("t", "<C-h>", function()
     -- 1) Temporarily exit terminal insert mode
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
     -- 2) Use smart-splits to move left
     require("smart-splits").move_cursor_left()
 end, { noremap = true, silent = true })
 
-vim.keymap.set("t", "<C-j>", function()
+keymap.set("t", "<C-j>", function()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
     require("smart-splits").move_cursor_down()
 end, { noremap = true, silent = true })
 
-vim.keymap.set("t", "<C-k>", function()
+keymap.set("t", "<C-k>", function()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
     require("smart-splits").move_cursor_up()
 end, { noremap = true, silent = true })
 
-vim.keymap.set("t", "<C-l>", function()
+keymap.set("t", "<C-l>", function()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "n", true)
     require("smart-splits").move_cursor_right()
 end, { noremap = true, silent = true })
@@ -98,7 +115,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 ---------------------------------------------------------
-
+-- TERMINAL JUMPS AND KEYBINDINGS
+---------------------------------------------------------
 -- Whenever a new terminal opens, set up buffer-local <C-w>v
 vim.api.nvim_create_autocmd("TermOpen", {
     callback = function(args)
@@ -121,15 +139,16 @@ vim.api.nvim_create_autocmd("TermOpen", {
         )
     end,
 })
+---------------------------------------------------------
 
 -- disable linting in the current buffer
--- vim.keymap.set("n", "<leader>un", function()
+-- keymap.set("n", "<leader>un", function()
 --   vim.api.nvim_clear_autocmds({ group = "nvim-lint", buffer = 0 })
 --   vim.notify("🔇 Linting disabled for this buffer", vim.log.levels.WARN)
 -- end, { desc = "Disable linting in this buffer" })
 
 -- Toggle nvim-lint globally (all buffers)
-vim.keymap.set("n", "<leader>uN", function()
+keymap.set("n", "<leader>uN", function()
     -- clear all lint autocmds
     vim.api.nvim_clear_autocmds({ group = "nvim-lint" })
     -- clear diagnostics in all open buffers
@@ -153,6 +172,8 @@ keymap.set("n", "<leader>nf", function()
         end)
 end, { desc = "New file anywhere (with Tab completion)" })
 
+-- Save file, just like :w
+vim.api.nvim_create_user_command("W", "write", {})
 
 -- AVAILABLE MAPPINGS (that I have come across)
 keymap.set("n", "<leader>e", "")
