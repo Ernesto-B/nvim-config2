@@ -18,7 +18,8 @@
 - `<C-x>` to remove file form list in a menu
 - `<leader>db` - delete current buffer
 - `<leader>,` - view all buffers
-- Refer to this config's [Keymaps Cheat Sheet](#keymaps-cheat-sheet)
+- View / search default nvim keymaps [here](https://vimdoc.sourceforge.net/htmldoc/vimindex.html)
+- Refer to this config's custom [Keymaps Cheat Sheet](#keymaps-cheat-sheet)
 
 ## Fix for ".so is not a valid Win32 application"
 1. Check installation of "clang-cl" `:!where clang-cl`. If you get an error, you have to first install "clang-cl" via the Visual Studio Installer
