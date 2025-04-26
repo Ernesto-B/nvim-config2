@@ -8,6 +8,12 @@ local opts = { noremap = true, silent = true }
 -- Netrw
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- Find files from project root with Snacks picker
+vim.keymap.set("n", "<leader>pf", function()
+    local root = require("lazyvim.util").root()
+    LazyVim.pick("files", { cwd = root })()
+end, { desc = "Find files from project root" })
+
 -- remove the default Snacks/Line-move mappings
 -- keymap.del("i", "<M-j>")
 -- keymap.del("i", "<M-k>")
@@ -188,4 +194,4 @@ keymap.set("n", "<c-k>", "")
 keymap.set("n", "<leader>fb", "")
 keymap.set("n", "<leader>fB", "")
 keymap.set("n", "<leader>ff", "")
-keymap.set("n", "<leader>fF", "")
+-- keymap.set("n", "<leader>fF", "")
