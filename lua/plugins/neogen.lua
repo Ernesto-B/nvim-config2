@@ -23,7 +23,8 @@ return {
             -- automatically insert your cursor inside the docblock after generating
             input_after_comment = true,
 
-            -- per-language annotation conventions
+            -- per-language annotation conventions. 
+            -- View the repo readme to see all languages and their supported annotation conventions
             languages = {
                 lua = {
                     template = {
@@ -45,7 +46,7 @@ return {
                         annotation_convention = "tsdoc",
                     },
                 },
-                -- add more here if you like…
+                -- add more here
             },
         })
     end,

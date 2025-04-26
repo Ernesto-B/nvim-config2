@@ -38,15 +38,16 @@
 - `fx` / `Fx` Jump to next / previous occurrence of `x`  
 - `ciw` / `diw` / `viw` Change / delete / select inner word  
 - `daw` Delete a word and surrounding whitespace  
-- `vis` / `dis` / `cis` Select / delete / change inner sentence (paragraph)  
-- `<C-v>` Enter Visual-Block mode  
+- `vis` / `dis` / `cis` Select / delete / change paragraph  
+- `<C-q>` Enter Visual-Block mode  
 
 ### Window & Buffers
 - `<leader>pv` Open Netrw explorer  
 - `<leader>db` Delete current buffer  
 - `<leader>,` List all buffers  
 - `<C-\>` or `<leader>ft` Toggle built-in terminal  
-- `C-x`  Exit terminal mode to normal mode
+- `<C-x>`  Exit terminal mode to normal mode
+- `<C-w>v` (while in terminal buf) Make new terminal buf split vertically
 
 ### Movement & Display
 - `<C-d>` / `<C-u>` Half-page down / up + center cursor  
@@ -64,8 +65,12 @@
 ### Search & Navigation
 - `<leader><Space>` Find file (Telescope)  
 - `<leader>sg` Live grep in project  
-- `<leader>sr` Advanced search & replace current word  
+- `<leader>sr` Grug-far (advanced search and replace in multiple files)
 - `<C-s>` Simple search & replace current word in file
+- `<M-s>` Simple search & replace current word in line
+- `<leader>s` Search & replace selection in file
+- `<C-s>` in search mode. Activate flash search
+- `s` Flash search file
 - `<leader>ss` List functions in file (Telescope symbols)  
 - `<leader>sw` Search for symbol in workspace  
 - `gr` LSP: find references  
